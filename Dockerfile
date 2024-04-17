@@ -5,7 +5,8 @@ FROM node:20 as builder-production
 
 WORKDIR /app
 
-COPY --link --chown=1000 package-lock.json package.json ./
+# COPY --link --chown=1000 package-lock.json package.json ./
+COPY --chown=1000 package-lock.json package.json ./
 RUN --mount=type=cache,target=/app/.npm \
         npm set cache /app/.npm && \
         npm ci --omit=dev
